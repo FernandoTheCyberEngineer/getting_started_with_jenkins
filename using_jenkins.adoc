@@ -1,0 +1,33 @@
+= Using Jenkins
+
+- Create the container and run it
+
+[source,bash]
+----
+sudo docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure jenkins/jenkins:latest
+----
+
+- List images
+
+[source,bash]
+----
+sudo docker images
+----
+
+- List running containers
+
+[source,bash]
+----
+sudo docker ps
+----
+
+- First Admin Password
+
+[source,bash]
+----
+sudo docker logs $(sudo docker ps |grep jenkins |awk '{print $1}')
+----
+
+== Logging on to Jenkins
+
+Point your browser to localhost:8080 and use the Admin password retrieved on previous step.

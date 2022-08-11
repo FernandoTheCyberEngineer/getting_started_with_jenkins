@@ -1,0 +1,42 @@
+= Using Mailhog
+
+- Create the container and run it
+
+[source,bash]
+----
+sudo docker run -d -v mailhog_home:/var/mailhog_home -p 8081:8025 -p 50001:1025 --restart=on-failure mailhog/mailhog:latest
+----
+
+- List images
+
+[source,bash]
+----
+sudo docker images
+----
+
+- List running containers
+
+[source,bash]
+----
+sudo docker ps
+----
+
+== Logging on to Mailhog
+
+Point your browser to localhost:8081 and use the Admin password retrieved on previous step.
+
+== Testing mail server
+[source,bash]
+----
+telnet localhost 1025
+
+EHLO example.com
+MAIL FROM:<example@example.com>
+RCPT TO:<example@example.com>
+DATA
+Subject: Hello World
+
+Hello World!
+.
+QUIT
+----
